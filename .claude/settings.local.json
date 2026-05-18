@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\\\Users\\\\kt010\\\\Downloads\\\\my-project\")",
+      "Bash(npm -v)",
+      "PowerShell(git *)",
+      "PowerShell(gh auth *)",
+      "PowerShell(winget install *)"
+    ]
+  }
+}

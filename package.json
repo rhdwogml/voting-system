@@ -1,0 +1,12 @@
+{
+  "name": "voting-system",
+  "private": true,
+  "workspaces": ["contracts", "backend", "frontend"],
+  "scripts": {
+    "compile": "npm run compile -w contracts",
+    "export": "npm run export -w contracts",
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    "test": "npm run test -w contracts"
+  }
+}

@@ -1,0 +1,21 @@
+node_modules/
+
+# Hardhat
+artifacts/
+cache/
+coverage/
+coverage.json
+
+# Backend
+uploads/
+*.db
+*.db-shm
+*.db-wal
+dist/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
