@@ -6,10 +6,11 @@ import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 import { initDb, getDb } from './db/client';
 import contractsRouter from './routes/contracts';
+import candidatesRouter, { cleanupPendingCandidates } from './routes/candidates';
 
 const app = express();
 const PORT = Number(process.env.PORT) || 4000;
-const UPLOAD_DIR = path.resolve(process.env.UPLOAD_DIR || './uploads');
+const UPLOAD_DIR = path.resolve(process.env['UPLOAD_DIR'] || './uploads');
 
 app.use(cors());
 app.use(express.json());
@@ -41,6 +42,7 @@ app.get('/api/nonce', (req, res) => {
 
 // Routes
 app.use('/api/contracts', contractsRouter);
+app.use('/api/candidates', candidatesRouter);
 
 // 만료 nonce 정리 (5분마다)
 function startNonceCleaner(): void {
@@ -59,12 +61,20 @@ function startNonceCleaner(): void {
   }, FIVE_MINUTES);
 }
 
+// pending 후보자 정리 (5분마다)
+function startCandidateCleaner(): void {
+  const FIVE_MINUTES = 5 * 60 * 1000;
+  setInterval(cleanupPendingCandidates, FIVE_MINUTES);
+}
+
 function bootstrap(): void {
   if (!fs.existsSync(UPLOAD_DIR)) {
     fs.mkdirSync(UPLOAD_DIR, { recursive: true });
   }
   initDb();
+  cleanupPendingCandidates(); // 서버 시작 시 1회 정리
   startNonceCleaner();
+  startCandidateCleaner();
   app.listen(PORT, () => {
     console.log(`Backend running at http://localhost:${PORT}`);
   });
