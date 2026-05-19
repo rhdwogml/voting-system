@@ -241,6 +241,52 @@ router.delete(
   }
 );
 
+// ── PUT /api/candidates/:id — 이름·사진 수정 (Admin, 백엔드만) ──────────────
+router.put(
+  '/:id',
+  adminAuth,
+  (req: Request, res: Response): void => {
+    upload.single('photo')(req, res, (multerErr: unknown) => {
+      if (multerErr) {
+        res.status(400).json({ error: (multerErr as Error).message });
+        return;
+      }
+
+      const id = Number(req.params['id']);
+      if (isNaN(id)) {
+        res.status(400).json({ error: 'Invalid id' });
+        return;
+      }
+
+      const db = getDb();
+      const row = db
+        .prepare(`SELECT * FROM candidates WHERE id = ? AND status = 'confirmed'`)
+        .get(id) as CandidateRow | undefined;
+
+      if (!row) {
+        res.status(404).json({ error: 'Candidate not found' });
+        return;
+      }
+
+      const newName = ((req.body as { name?: string }).name ?? '').trim() || row.name;
+      let newPhotoPath = row.photo_path;
+
+      if (req.file) {
+        try { fs.unlinkSync(path.join(UPLOAD_DIR, row.photo_path)); } catch { /* ignore */ }
+        newPhotoPath = req.file.filename;
+      }
+
+      db.prepare('UPDATE candidates SET name = ?, photo_path = ? WHERE id = ?').run(
+        newName,
+        newPhotoPath,
+        id,
+      );
+
+      res.json({ id, name: newName, photoUrl: photoUrl(req, newPhotoPath) });
+    });
+  }
+);
+
 // ── pending 후보자 정리 (서버 시작 시 + 5분마다 호출) ───────────────────────
 export function cleanupPendingCandidates(): void {
   try {
