@@ -1,0 +1,14 @@
+# Cloudflare Pages 설정
+name = "voting-system"
+pages_build_output_dir = "frontend/dist"
+compatibility_date = "2025-05-19"
+
+# 빌드 명령 (wrangler pages dev 시 자동 실행 안 함 — npm run build:frontend 먼저 실행)
+# [build]
+# command = "npm run build:frontend"
+
+# 환경별 설정
+[env.production]
+# 운영 환경 변수는 Cloudflare Pages 대시보드에서 설정
+# VITE_API_BASE = "https://your-backend-domain.com/api"
+# VITE_RPC_URL  = "https://sepolia.infura.io/v3/YOUR_KEY"

@@ -1,12 +1,24 @@
 {
   "name": "voting-system",
   "private": true,
-  "workspaces": ["contracts", "backend", "frontend"],
+  "workspaces": [
+    "contracts",
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "compile": "npm run compile -w contracts",
-    "export": "npm run export -w contracts",
+    "compile":    "npm run compile -w contracts",
+    "export":     "npm run export -w contracts",
     "dev:backend": "npm run dev -w backend",
     "dev:frontend": "npm run dev -w frontend",
-    "test": "npm run test -w contracts"
+    "test":       "npm run test -w contracts",
+
+    "build:frontend": "npm run build -w frontend",
+
+    "pages:preview": "npm run build:frontend && npm run preview -w frontend --",
+    "pages:login":   "wrangler login",
+    "pages:whoami":  "wrangler whoami",
+    "pages:deploy":  "npm run build:frontend && wrangler pages deploy frontend/dist --project-name voting-system",
+    "pages:status":  "wrangler pages deployment list --project-name voting-system"
   }
 }

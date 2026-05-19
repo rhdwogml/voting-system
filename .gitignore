@@ -19,3 +19,8 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+
+# Wrangler / Cloudflare
+.wrangler/
+.dev.vars
+frontend/.env.production
