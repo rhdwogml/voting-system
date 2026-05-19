@@ -1,0 +1,100 @@
+.page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  color: #fff;
+}
+
+.header { margin-bottom: 1.5rem; }
+.title { font-size: 1.5rem; font-weight: 800; margin: 0 0 0.25rem; }
+.sub { color: #90caf9; font-size: 0.9rem; margin: 0; }
+
+.list { list-style: none; padding: 0; margin: 0; }
+
+.item {
+  background: #0d2257;
+  border: 1px solid #1a3a7a;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.itemLeft { flex: 1; min-width: 180px; }
+
+.itemTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.itemMeta {
+  font-size: 0.8rem;
+  color: #90caf9;
+  line-height: 1.7;
+}
+
+.winner {
+  font-size: 0.85rem;
+  color: #ffe082;
+  font-weight: 600;
+}
+
+.noWinner { color: #666; font-size: 0.85rem; }
+
+.totalVotes {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-align: right;
+}
+
+.totalLabel { font-size: 0.75rem; color: #90caf9; text-align: right; }
+
+.ethLink {
+  display: block;
+  color: #64b5f6;
+  font-size: 0.8rem;
+  text-decoration: none;
+  margin-top: 0.25rem;
+}
+
+.ethLink:hover { text-decoration: underline; }
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem;
+  color: #90caf9;
+}
+
+.spinner {
+  width: 28px; height: 28px;
+  border: 3px solid rgba(144,202,249,0.2);
+  border-top-color: #90caf9;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 0.75rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.count {
+  font-size: 0.85rem;
+  color: #90caf9;
+  margin-bottom: 1rem;
+}
+
+.endReason {
+  font-size: 0.78rem;
+  color: #90caf9;
+}

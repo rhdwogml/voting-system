@@ -6,7 +6,6 @@ import { useVoting } from '../context/VotingContext';
 import { useWallet } from '../context/WalletContext';
 import { usePolling } from '../hooks/usePolling';
 import {
-  API_BASE,
   fetchCandidates,
   fetchVotingHistory,
   fetchPrecheck,
@@ -298,141 +297,14 @@ function HomeActive() {
   );
 }
 
-// ── S8 ENDED (Phase 7 기본 구현, Phase 10에서 컨페티 추가) ────────────────────
+// ── S8 ENDED — Phase 10에서 /result 페이지로 완전 구현, 여기서는 리다이렉트 ───
 
 function HomeEnded() {
-  const { contractAddress } = useVoting();
-  const [data, setData] = useState<CandidateVote[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [endedAt, setEndedAt] = useState<string | null>(null);
-  const [endReason, setEndReason] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function load() {
-      try {
-        const candidates = await fetchCandidates();
-
-        if (contractAddress) {
-          const p = RPC_URL ? new ethers.JsonRpcProvider(RPC_URL) : null;
-          if (p) {
-            const contract = new ethers.Contract(contractAddress, VOTING_ABI, p);
-            const [ids, votes] = (await contract.getResults()) as [bigint[], bigint[]];
-            const voteMap = new Map(ids.map((id, i) => [Number(id), Number(votes[i])]));
-            setData(candidates.map((c) => ({ ...c, votes: voteMap.get(c.id) ?? 0 })));
-          } else {
-            setData(candidates.map((c) => ({ ...c, votes: 0 })));
-          }
-        }
-
-        // DB에서 결과 메타데이터 조회
-        const res = await fetch(`${API_BASE}/votings`);
-        if (res.ok) {
-          const history = (await res.json()) as VotingHistory[];
-          const latest = history[0];
-          if (latest) {
-            setEndedAt(latest.endedAt);
-            setEndReason(latest.endReason);
-          }
-        }
-      } catch {
-        // fallback
-      } finally {
-        setLoading(false);
-      }
-    }
-    void load();
-  }, [contractAddress]);
-
-  if (loading) {
-    return (
-      <div className={styles.page}>
-        <div className={styles.loading}><div className={styles.spinner} />결과 집계 중…</div>
-      </div>
-    );
-  }
-
-  const sorted = [...data].sort((a, b) => b.votes - a.votes || a.id - b.id);
-  const winner = sorted[0];
-  const total = data.reduce((s, c) => s + c.votes, 0);
-
+  const navigate = useNavigate();
+  useEffect(() => { navigate('/result', { replace: true }); }, [navigate]);
   return (
     <div className={styles.page}>
-      <div className={`${styles.section} ${styles.endedHero}`}>
-        <div className={styles.trophyIcon}>🏆</div>
-        <h2 className={styles.endedTitle}>최종 결과 발표</h2>
-        {winner && (
-          <div className={styles.winnerCard}>
-            <span className={styles.winnerBadge}>🎉 당선</span>
-            <img
-              className={styles.winnerPhoto}
-              src={winner.photoUrl}
-              alt={winner.name}
-              onError={handlePhotoError}
-            />
-            <span className={styles.winnerName}>{winner.name}</span>
-            <span className={styles.winnerVotes}>
-              {winner.votes}표 ({total > 0 ? ((winner.votes / total) * 100).toFixed(1) : 0}%)
-            </span>
-          </div>
-        )}
-      </div>
-
-      {/* 최종 순위표 */}
-      <div className={styles.section}>
-        <p className={styles.sectionTitle}>최종 득표 순위</p>
-        <table className={styles.endedTable}>
-          <thead>
-            <tr>
-              <th>순위</th>
-              <th>이름</th>
-              <th>득표수</th>
-              <th>비율</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sorted.map((c, i) => (
-              <tr key={c.id}>
-                <td>{i + 1}위</td>
-                <td>{c.name}</td>
-                <td>{c.votes}표</td>
-                <td>{total > 0 ? ((c.votes / total) * 100).toFixed(1) : 0}%</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <DonutChart data={sorted.map((c) => ({ name: c.name, votes: c.votes }))} size={180} />
-      </div>
-
-      {/* 메타 정보 */}
-      <div className={styles.section}>
-        <p className={styles.sectionTitle}>투표 정보</p>
-        <p className={styles.endedMeta}>
-          총 {total}표 집계됨
-          {endedAt && ` · 종료: ${endedAt.slice(0, 16).replace('T', ' ')} UTC`}
-          {endReason && ` · ${endReason === 'timeup' ? '⏰ 시간 만료 (자동 종료)' : '🛑 관리자 수동 종료'}`}
-        </p>
-        {contractAddress && (
-          <div className={styles.etherscanRow}>
-            <a
-              href={`${SEPOLIA_ETHERSCAN}/address/${contractAddress}`}
-              target="_blank"
-              rel="noreferrer"
-              className={styles.etherscanLink}
-            >
-              컨트랙트 보기 ↗
-            </a>
-            <a
-              href={`${SEPOLIA_ETHERSCAN}/address/${contractAddress}#events`}
-              target="_blank"
-              rel="noreferrer"
-              className={styles.etherscanLink}
-            >
-              Voted 이벤트 전체 보기 ↗
-            </a>
-          </div>
-        )}
-      </div>
+      <div className={styles.loading}><div className={styles.spinner} />결과 화면으로 이동 중…</div>
     </div>
   );
 }
