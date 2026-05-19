@@ -1,0 +1,147 @@
+.page {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  color: #fff;
+}
+
+.header { margin-bottom: 1.5rem; }
+.title { font-size: 1.5rem; font-weight: 800; margin: 0 0 0.25rem; }
+.sub { color: #90caf9; font-size: 0.9rem; margin: 0; }
+
+.card {
+  background: #0d2257;
+  border: 1px solid #1a3a7a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.label { color: #90caf9; width: 110px; flex-shrink: 0; }
+
+.badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.badgeIdle   { background: #7a6a00; color: #ffe082; }
+.badgeActive { background: #1a7a1a; color: #a5d6a7; }
+.badgeEnded  { background: #5a1a7a; color: #ce93d8; }
+.badgeNone   { background: #444; color: #ccc; }
+
+.ethLink {
+  color: #64b5f6;
+  font-size: 0.8rem;
+  font-family: monospace;
+  text-decoration: none;
+}
+
+.ethLink:hover { text-decoration: underline; }
+
+.sectionTitle {
+  font-size: 0.8rem;
+  color: #90caf9;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 1rem;
+  border-top: 1px solid #1a3a7a;
+  padding-top: 1rem;
+}
+
+label { display: block; font-size: 0.85rem; color: #90caf9; margin-bottom: 0.3rem; }
+
+.dateInput {
+  width: 100%;
+  background: #0b1b3b;
+  border: 1px solid #1a3a7a;
+  border-radius: 6px;
+  padding: 0.65rem 0.8rem;
+  color: #fff;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  color-scheme: dark;
+}
+
+.dateInput:focus { outline: none; border-color: #1565c0; }
+.dateInput:disabled { opacity: 0.45; }
+
+.hint { font-size: 0.78rem; color: #666; margin-top: 0.3rem; }
+
+.startBtn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.startBtn:hover:not(:disabled) { opacity: 0.9; }
+.startBtn:disabled { opacity: 0.4; cursor: default; background: #333; }
+
+.endBtn {
+  width: 100%;
+  padding: 0.85rem;
+  background: #b71c1c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.endBtn:hover:not(:disabled) { opacity: 0.9; }
+.endBtn:disabled { opacity: 0.4; cursor: default; }
+
+.warnText {
+  font-size: 0.8rem;
+  color: #ffa726;
+  margin-top: 0.5rem;
+}
+
+.endedMsg {
+  text-align: center;
+  padding: 2rem;
+  color: #90caf9;
+  font-size: 0.95rem;
+}
+
+.candidateWarn {
+  background: rgba(183,28,28,0.12);
+  border: 1px solid #b71c1c;
+  border-radius: 6px;
+  padding: 0.6rem 0.9rem;
+  color: #ef9a9a;
+  font-size: 0.82rem;
+  margin-bottom: 0.75rem;
+}
+
+.spinner {
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }

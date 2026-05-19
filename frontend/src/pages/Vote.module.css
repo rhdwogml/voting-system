@@ -1,0 +1,219 @@
+.page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  color: #fff;
+}
+
+/* ── S5 투표 화면 ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.title { font-size: 1.4rem; font-weight: 800; margin: 0; }
+
+.countdown {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: monospace;
+  color: #ffe082;
+}
+
+.countdownLabel { font-size: 0.75rem; color: #90caf9; text-align: right; }
+
+.instruction {
+  background: #0d2257;
+  border: 1px solid #1a3a7a;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: #90caf9;
+  margin-bottom: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.candidateCard {
+  background: #0d2257;
+  border: 2px solid #1a3a7a;
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  transition: border-color 0.15s, background 0.15s;
+  text-align: center;
+}
+
+.candidateCard:hover { border-color: #1565c0; background: #0f2d6e; }
+
+.candidateCard.selected {
+  border-color: #1e88e5;
+  background: rgba(30,136,229,0.15);
+  box-shadow: 0 0 16px rgba(30,136,229,0.3);
+}
+
+.photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1a3a7a;
+  background: #0b1b3b;
+}
+
+.candidateCard.selected .photo { border-color: #1e88e5; }
+
+.candidateName { font-size: 0.95rem; font-weight: 600; }
+
+.selectionIndicator { font-size: 0.8rem; color: #90caf9; }
+.selectionIndicator.active { color: #1e88e5; font-weight: 700; }
+
+.voteBtn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #1565c0, #283593);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.voteBtn:hover:not(:disabled) { opacity: 0.9; }
+.voteBtn:disabled { opacity: 0.4; cursor: default; background: #333; }
+
+.voteHint { font-size: 0.8rem; color: #90caf9; text-align: center; margin-top: 0.5rem; }
+
+/* ── 3단계 모달 ── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background: #0d2257;
+  border: 1px solid #1a3a7a;
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  min-width: 300px;
+  text-align: center;
+}
+
+.modalTitle { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+.steps { list-style: none; padding: 0; margin: 0; text-align: left; }
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.stepActive  { color: #fff; }
+.stepDone    { color: #66bb6a; }
+
+.stepIcon { width: 20px; text-align: center; flex-shrink: 0; }
+
+.spinner {
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── S6 투표 완료 ── */
+.donePage {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  color: #fff;
+  text-align: center;
+}
+
+.doneIcon { font-size: 3.5rem; margin-bottom: 0.5rem; }
+.doneTitle { font-size: 1.6rem; font-weight: 800; margin: 0 0 0.5rem; }
+.doneSub { color: #90caf9; margin: 0 0 2rem; }
+
+.receiptCard {
+  background: #0d2257;
+  border: 1px solid #1a3a7a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.receiptRow {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+}
+
+.receiptRow:last-child { margin-bottom: 0; }
+
+.receiptLabel { color: #90caf9; width: 80px; flex-shrink: 0; }
+.receiptValue { color: #fff; word-break: break-all; }
+
+.ethLink {
+  color: #64b5f6;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.ethLink:hover { text-decoration: underline; }
+
+.homeBtn {
+  width: 100%;
+  padding: 0.9rem;
+  background: #1565c0;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.homeBtn:hover { opacity: 0.9; }
+
+/* ── Loading ── */
+.loading {
+  text-align: center;
+  padding: 4rem;
+  color: #90caf9;
+}
+
+.bigSpinner {
+  width: 36px; height: 36px;
+  border: 3px solid rgba(144,202,249,0.2);
+  border-top-color: #90caf9;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem;
+}
