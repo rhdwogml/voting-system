@@ -1,0 +1,338 @@
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  color: #fff;
+}
+
+/* ── 공통 ──────────────────────────────────────────────── */
+.section {
+  background: #0d2257;
+  border: 1px solid #1a3a7a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.sectionTitle {
+  font-size: 0.8rem;
+  color: #90caf9;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.75rem;
+}
+
+/* ── S1-NONE ───────────────────────────────────────────── */
+.noneHero {
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.noneIcon { font-size: 3rem; margin-bottom: 1rem; }
+
+.noneTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.noneSubtitle {
+  color: #90caf9;
+  margin: 0 0 1.5rem;
+}
+
+.primaryBtn {
+  display: inline-block;
+  background: #1565c0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.85rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.primaryBtn:hover { background: #1976d2; }
+.primaryBtn:disabled { opacity: 0.5; cursor: default; }
+
+.historyList { list-style: none; padding: 0; margin: 0; }
+
+.historyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #1a3a7a;
+  font-size: 0.9rem;
+}
+
+.historyItem:last-child { border-bottom: none; }
+
+.historyTitle { font-weight: 600; }
+.historyMeta { color: #90caf9; font-size: 0.8rem; margin-top: 2px; }
+
+.viewAll {
+  display: block;
+  text-align: right;
+  color: #64b5f6;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  text-decoration: none;
+}
+
+.viewAll:hover { text-decoration: underline; }
+
+/* ── S1-IDLE ───────────────────────────────────────────── */
+.idleHero {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.idleIcon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+.idleTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+}
+
+.idleSub { color: #90caf9; margin: 0; }
+
+.candidateGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.candidateCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0b1b3b;
+  border: 1px solid #1a3a7a;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  min-width: 110px;
+}
+
+.candidatePhoto {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1a3a7a;
+  background: #1a3a7a;
+}
+
+.candidateName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.etherscanLink {
+  font-size: 0.8rem;
+  color: #64b5f6;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.etherscanLink:hover { text-decoration: underline; }
+
+/* ── S1-ACTIVE ─────────────────────────────────────────── */
+.liveBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.liveIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.liveDot {
+  width: 10px;
+  height: 10px;
+  background: #f44336;
+  border-radius: 50%;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+.countdown {
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-family: monospace;
+  color: #ffe082;
+}
+
+.countdownLabel {
+  font-size: 0.75rem;
+  color: #90caf9;
+  text-align: right;
+}
+
+.totalCounter {
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+  color: #fff;
+  line-height: 1;
+}
+
+.totalCounterUnit {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #90caf9;
+}
+
+.chartGrid {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  .chartGrid { grid-template-columns: 1fr; }
+}
+
+.voteBtn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #1565c0, #283593);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.voteBtn:hover:not(:disabled) { opacity: 0.9; }
+.voteBtn:disabled { opacity: 0.5; cursor: default; background: #333; }
+
+/* ── S8 ENDED ──────────────────────────────────────────── */
+.endedHero {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.trophyIcon { font-size: 3rem; margin-bottom: 0.5rem; }
+
+.endedTitle {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin: 0 0 1.5rem;
+  color: #ffe082;
+}
+
+.winnerCard {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255,224,130,0.08);
+  border: 2px solid #ffe082;
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.winnerBadge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: #ffe082;
+  color: #000;
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+}
+
+.winnerPhoto {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffe082;
+  background: #1a3a7a;
+}
+
+.winnerName {
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.winnerVotes {
+  font-size: 1rem;
+  color: #90caf9;
+}
+
+.endedTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.endedTable th {
+  color: #90caf9;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a3a7a;
+}
+
+.endedTable td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid rgba(26,58,122,0.5);
+}
+
+.endedMeta {
+  color: #90caf9;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.etherscanRow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+/* ── loading ───────────────────────────────────────────── */
+.loading {
+  text-align: center;
+  padding: 4rem;
+  color: #90caf9;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(144,202,249,0.2);
+  border-top-color: #90caf9;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }

@@ -1,0 +1,113 @@
+.wrapper {
+  width: 100%;
+}
+
+.title {
+  font-size: 0.85rem;
+  color: #90caf9;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.5rem 44px 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.rank {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #90caf9;
+  text-align: center;
+}
+
+.photo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1a3a7a;
+  background: #1a3a7a;
+  flex-shrink: 0;
+}
+
+.barArea {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: 0.85rem;
+  color: #e0e0e0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track {
+  height: 22px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.bar::after {
+  content: attr(data-pct);
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.count {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  text-align: right;
+  white-space: nowrap;
+  min-width: 3.5rem;
+}
+
+.countUnit {
+  font-size: 0.75rem;
+  color: #90caf9;
+}
+
+/* 1위 강조 */
+.row:first-child .bar {
+  box-shadow: 0 0 12px rgba(255,255,255,0.2);
+}
+
+.row:first-child .count {
+  color: #ffe082;
+}
+
+.row:first-child .rank {
+  color: #ffe082;
+}
+
+.winner .bar {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { filter: brightness(1); }
+  50%       { filter: brightness(1.25); }
+}
