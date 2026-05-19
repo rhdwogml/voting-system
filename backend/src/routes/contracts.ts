@@ -16,18 +16,33 @@ router.get('/current', async (_req, res) => {
     .prepare('SELECT address, title FROM contract_deployments WHERE is_current = 1')
     .get() as ContractRow | undefined;
 
+  // NONE 상태 — 배포 이력 없음
   if (!contract) {
-    res.json({ address: null, state: 'NONE' });
+    res.json({
+      address: null,
+      state: 'NONE',
+      ownerAddress: process.env['OWNER_ADDRESS'] ?? null,
+    });
     return;
   }
 
+  // 체인에서 상태 + owner 조회
+  let state = 'UNKNOWN';
+  let ownerAddress: string | null = null;
+
   try {
-    const state = await chainReader.getState(contract.address);
-    res.json({ address: contract.address, state, title: contract.title });
+    state = await chainReader.getState(contract.address);
+    ownerAddress = await chainReader.getOwner(contract.address);
   } catch {
-    // RPC 미설정 또는 오류 시 주소만 반환
-    res.json({ address: contract.address, state: 'UNKNOWN', title: contract.title });
+    // RPC 미설정 시 DB 정보만 반환
   }
+
+  res.json({
+    address: contract.address,
+    state,
+    title: contract.title,
+    ownerAddress,
+  });
 });
 
 export default router;

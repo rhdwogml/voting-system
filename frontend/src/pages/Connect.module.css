@@ -1,0 +1,80 @@
+.page {
+  min-height: 100vh;
+  background: #0B1B3B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.card {
+  background: #0d2257;
+  border: 1px solid #1a3a7a;
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+.logo {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem;
+}
+
+.subtitle {
+  color: #90caf9;
+  font-size: 0.95rem;
+  margin: 0 0 2rem;
+}
+
+.connectBtn {
+  width: 100%;
+  padding: 0.9rem;
+  background: #f6851b;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.15s;
+}
+
+.connectBtn:hover { background: #e2761b; }
+.connectBtn:disabled { opacity: 0.5; cursor: default; }
+
+.links {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: #90caf9;
+}
+
+.hint a {
+  color: #64b5f6;
+  text-decoration: none;
+}
+
+.hint a:hover { text-decoration: underline; }
+
+.error {
+  margin-top: 1rem;
+  color: #ef9a9a;
+  font-size: 0.85rem;
+}
