@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { initDb, getDb } from './db/client';
 import contractsRouter from './routes/contracts';
 import candidatesRouter, { cleanupPendingCandidates } from './routes/candidates';
+import votingsRouter from './routes/votings';
 
 const app = express();
 const PORT = Number(process.env.PORT) || 4000;
@@ -43,6 +44,7 @@ app.get('/api/nonce', (req, res) => {
 // Routes
 app.use('/api/contracts', contractsRouter);
 app.use('/api/candidates', candidatesRouter);
+app.use('/api/votings', votingsRouter);
 
 // 만료 nonce 정리 (5분마다)
 function startNonceCleaner(): void {

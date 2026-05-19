@@ -4,6 +4,7 @@ const VOTING_ABI = [
   'function getState() view returns (uint8)',
   'function owner() view returns (address)',
   'function getResults() view returns (uint256[] ids, uint256[] voteCounts)',
+  'function endTime() view returns (uint256)',
 ];
 
 export type ContractState = 'IDLE' | 'ACTIVE' | 'ENDED';
@@ -39,6 +40,11 @@ class ChainReader {
       ids: ids.map(Number),
       votes: votes.map(Number),
     };
+  }
+
+  async getEndTime(address: string): Promise<number> {
+    const contract = new ethers.Contract(address, VOTING_ABI, this.getProvider());
+    return Number(await contract.endTime());
   }
 }
 
